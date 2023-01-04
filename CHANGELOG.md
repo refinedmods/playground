@@ -16,3 +16,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 
 - Stuff
+
+[Unreleased]: https://github.com/raoulvdberge/playground/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/raoulvdberge/playground/releases/tag/v1.0.0
