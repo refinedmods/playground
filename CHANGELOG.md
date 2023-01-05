@@ -7,17 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-### Added 
+## [1.1.0] - 2023-01-05
 
-- Added Dutch translation
-- Feature2
-- Feature3
+### Added
+
+-   Added Dutch translation
+-   Feature2
+-   Feature3
 
 ## [1.0.0] - 2019-02-15
 
 ### Added
 
-- Stuff
+-   Stuff
 
-[Unreleased]: https://github.com/raoulvdberge/playground/compare/v1.0.0...HEAD
+[Unreleased]: https://github.com/refinedmods/playground/compare/1.1.0...HEAD
+
+[1.1.0]: https://github.com/refinedmods/playground/compare/1.0.0...1.1.0
+
 [1.0.0]: https://github.com/raoulvdberge/playground/releases/tag/v1.0.0
