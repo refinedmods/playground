@@ -35,7 +35,7 @@ jobs:
         with:
           head: main
           base: develop
-          title: Merge main into dev branch
+          title: Merge main into develop branch
           body: |
             This PR merges the main branch back into develop.
             This happens to ensure that the updates that happend on the release branch, i.e. CHANGELOG and version updates are also present on the develop branch.
