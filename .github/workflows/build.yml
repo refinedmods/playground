@@ -1,0 +1,12 @@
+name: Build
+
+on: [pull_request, push]
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - name: build it
+        run: |
+         echo "hey"
