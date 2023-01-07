@@ -19,7 +19,6 @@ jobs:
         with:
           add: 'CHANGELOG.md'
           default_author: github_actor
-          fetch: false
           message: 'Prepare release ${{ github.event.inputs.version }}'
           new_branch: 'release/${{ github.event.inputs.version }}'
           push: true
