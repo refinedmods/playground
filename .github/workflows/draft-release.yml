@@ -27,8 +27,8 @@ jobs:
         uses: devops-infra/action-pull-request@v0.5.3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          source_branch: 'release/${{ github.event.inputs.version }}'
-          target_branch: main
+          target_branch: 'release/${{ github.event.inputs.version }}'
+          source_branch: main
           title: Release v${{ github.event.inputs.version }}
           body: |
             Hi @${{ github.actor }}!
