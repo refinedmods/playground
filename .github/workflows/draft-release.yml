@@ -36,4 +36,4 @@ jobs:
             Merging this PR will publish the release.
           reviewer: ${{ github.actor }}
           assignee: ${{ github.actor }}
-          allow_no_diff: false
+          allow_no_diff: true
