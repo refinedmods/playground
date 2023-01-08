@@ -1,12 +1,10 @@
-name: "Publish new release"
-
+name: Publish release
 on:
   pull_request:
     branches:
       - main
     types:
       - closed
-
 jobs:
   release:
     name: Publish new release
@@ -18,7 +16,7 @@ jobs:
           BRANCH_NAME="${{ github.event.pull_request.head.ref }}"
           VERSION=${BRANCH_NAME#release/}
           echo "RELEASE_VERSION=v$VERSION" >> $GITHUB_ENV
-      - name: Create release
+      - name: Create GitHub release
         uses: thomaseizinger/create-release@1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -28,7 +26,7 @@ jobs:
           name: ${{ env.RELEASE_VERSION }}
           draft: false
           prerelease: false
-      - name: Merge main into develop branch
+      - name: Create PR for merging main back into develop
         uses: thomaseizinger/create-pull-request@1.0.0
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,4 +36,4 @@ jobs:
           title: Merge main into develop branch
           body: |
             This PR merges the main branch back into develop.
-            This happens to ensure that the updates that happend on the release branch, i.e. CHANGELOG and version updates are also present on the develop branch.
+            This is to ensure that the updates that happened on the release branch, i.e. CHANGELOG and version updates are also present on the develop branch.
