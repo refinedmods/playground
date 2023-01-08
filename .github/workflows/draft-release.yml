@@ -33,7 +33,7 @@ jobs:
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
         with:
-          add: 'CHANGELOG.md'
+          add: '["CHANGELOG.md", "build.gradle"]'
           default_author: github_actions
           message: 'Prepare release ${{ github.event.inputs.version }}'
           new_branch: 'release/${{ github.event.inputs.version }}'
