@@ -11,6 +11,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.PUSH_TOKEN }}
       - name: Update changelog
         uses: thomaseizinger/keep-a-changelog-new-release@1.1.0
         with:
@@ -23,17 +25,16 @@ jobs:
           message: 'Prepare release ${{ github.event.inputs.version }}'
           new_branch: 'release/${{ github.event.inputs.version }}'
           push: true
-      - name: Create pull request
-        uses: devops-infra/action-pull-request@v0.5.3
+      - name: Create pull request for release
+        uses: thomaseizinger/create-pull-request@1.3.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.PUSH_TOKEN }}
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          target_branch: 'release/${{ github.event.inputs.version }}'
-          source_branch: main
+          head: release/${{ github.event.inputs.version }}
+          base: main
           title: Release v${{ github.event.inputs.version }}
+          reviewers: ${{ github.actor }}
           body: |
             Hi @${{ github.actor }}!
             This PR was created in response to a manual trigger of the release workflow here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}.
             Merging this PR will publish the release.
-          reviewer: ${{ github.actor }}
-          assignee: ${{ github.actor }}
-          allow_no_diff: true
