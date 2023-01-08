@@ -7,6 +7,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.3.0] - 2023-01-08
+
 ## [1.2.0] - 2023-01-06
 
 ### Added
@@ -27,7 +29,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 -   Stuff
 
-[Unreleased]: https://github.com/refinedmods/playground/compare/1.2.0...HEAD
+[Unreleased]: https://github.com/refinedmods/playground/compare/1.3.0...HEAD
+
+[1.3.0]: https://github.com/refinedmods/playground/compare/1.2.0...1.3.0
 
 [1.2.0]: https://github.com/refinedmods/playground/compare/1.1.0...1.2.0
 
