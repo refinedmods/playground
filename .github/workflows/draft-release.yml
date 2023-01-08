@@ -17,6 +17,19 @@ jobs:
         uses: thomaseizinger/keep-a-changelog-new-release@1.1.0
         with:
           version: ${{ github.event.inputs.version }}
+      - name: Retrieve next version number
+        uses: actions-ecosystem/action-bump-semver@v1
+        id: bump-semver
+        with:
+          current_version: ${{ github.event.inputs.version }}
+          level: patch
+      - name: Update version number
+        uses: jacobtomlinson/gha-find-replace@v2
+        with:
+          include: 'build.gradle'
+          find: ${{ github.event.inputs.version }}
+          replace: ${{ steps.bump-semver.outputs.new_version }}
+          regex: false
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
         with:
