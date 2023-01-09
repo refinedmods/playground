@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       next-version:
-        name: 'Next version number'
+        description: 'Next version number'
         required: false
 jobs:
   draft:
