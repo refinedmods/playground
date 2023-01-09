@@ -1,6 +1,9 @@
 name: Draft release
 on:
   workflow_dispatch:
+    inputs:
+      next-version:
+        required: false
 jobs:
   draft:
     runs-on: ubuntu-latest
@@ -26,16 +29,26 @@ jobs:
           version: ${{ steps.version.outputs.group1 }}
       - name: Retrieve next version number
         uses: actions-ecosystem/action-bump-semver@v1
+        if: "${{ github.event.inputs.next-version == '' }}"
         id: bump-semver
         with:
           current_version: ${{ steps.version.outputs.group1 }}
           level: minor
-      - name: Update version number
+      - name: Update version number (with Semver)
         uses: jacobtomlinson/gha-find-replace@v2
+        if: "${{ github.event.inputs.next-version == '' }}"
         with:
           include: 'build.gradle'
           find: ${{ steps.version.outputs.group1 }}
           replace: ${{ steps.bump-semver.outputs.new_version }}
+          regex: false
+      - name: Update version number (manually)
+        uses: jacobtomlinson/gha-find-replace@v2
+        if: "${{ github.event.inputs.next-version != '' }}"
+        with:
+          include: 'build.gradle'
+          find: ${{ steps.version.outputs.group1 }}
+          replace: ${{ github.event.inputs.next-version }}
           regex: false
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
