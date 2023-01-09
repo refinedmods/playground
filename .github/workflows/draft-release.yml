@@ -3,6 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       next-version:
+        name: 'Next version number'
         required: false
 jobs:
   draft:
@@ -11,7 +12,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
-          token: ${{ secrets.PUSH_TOKEN }}
+          token: ${{ secrets.GITFLOW_PUSH_TOKEN }}
       - name: Read build.gradle for version number
         id: gradle
         uses: juliangruber/read-file-action@v1
