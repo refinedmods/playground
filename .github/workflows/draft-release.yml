@@ -48,8 +48,8 @@ jobs:
         if: "${{ github.event.inputs.next-version != '' }}"
         with:
           include: 'build.gradle'
-          find: ${{ steps.version.outputs.group1 }}
-          replace: ${{ github.event.inputs.next-version }}
+          find: "version = \'${{ steps.version.outputs.group1 }}\'"
+          replace: "version = \'${{ github.event.inputs.next-version }}\'"
           regex: false
       - name: Commit and push changes
         uses: EndBug/add-and-commit@v9
