@@ -40,8 +40,8 @@ jobs:
         if: "${{ github.event.inputs.next-version == '' }}"
         with:
           include: 'build.gradle'
-          find: ${{ steps.version.outputs.group1 }}
-          replace: ${{ steps.bump-semver.outputs.new_version }}
+          find: "version = \'${{ steps.version.outputs.group1 }}\'"
+          replace: "version = \'${{ steps.bump-semver.outputs.new_version }}\'"
           regex: false
       - name: Update version number (manually)
         uses: jacobtomlinson/gha-find-replace@v2
