@@ -11,7 +11,7 @@ allprojects {
 
 subprojects {
     group = 'com.refinedmods.refinedstorage2'
-    version = '1.9.0'
+    version = '1.10.0'
 
     if (System.getenv('GITHUB_SHA') != null) {
         version += '+' + System.getenv('GITHUB_SHA').substring(0, 7)
@@ -57,7 +57,7 @@ subprojects {
         apply plugin: 'info.solidsoft.pitest'
         pitest {
             junit5PluginVersion = '1.0.0'
-            pitestVersion = '1.9.0'
+            pitestVersion = '1.10.0'
             outputFormats.set(['HTML'])
             mutationThreshold.set(90)
             coverageThreshold.set(80)
