@@ -11,8 +11,8 @@ on:
           - major
           - minor
           - patch
-      next-version:
-        description: 'Next version number'
+      version-number:
+        description: 'Version number'
         required: false
 jobs:
   draft:
@@ -23,26 +23,26 @@ jobs:
         with:
           token: ${{ secrets.GITFLOW_PUSH_TOKEN }}
       - name: Get latest version from changelog
-        if: "${{ github.event.inputs.next-version == '' }}"
+        if: "${{ github.event.inputs.version-number == '' }}"
         id: changelog
         uses: mindsers/changelog-reader-action@v2
         with:
           path: ./CHANGELOG.md
       - name: Get version number to release (Semver)
-        if: "${{ github.event.inputs.next-version == '' }}"
+        if: "${{ github.event.inputs.version-number == '' }}"
         uses: actions-ecosystem/action-bump-semver@v1
         id: bump-semver
         with:
           current_version: ${{ steps.changelog.outputs.version }}
           level: ${{ github.event.inputs.release-type }}
       - name: Assign version number to release (Semver)
-        if: "${{ github.event.inputs.next-version == '' }}"
+        if: "${{ github.event.inputs.version-number == '' }}"
         run: |
-          echo "VERSION=${{ steps.bump-semver.outputs.version }}" >> $GITHUB_ENV
+          echo "VERSION=${{ steps.bump-semver.outputs.new_version }}" >> $GITHUB_ENV
       - name: Assign version number to release (manual)
-        if: "${{ github.event.inputs.next-version != '' }}"
+        if: "${{ github.event.inputs.version-number != '' }}"
         run: |
-          echo "VERSION=${{ github.event.inputs.next-version }}" >> $GITHUB_ENV
+          echo "VERSION=${{ github.event.inputs.version-number }}" >> $GITHUB_ENV
       - name: Update changelog
         uses: thomaseizinger/keep-a-changelog-new-release@1.1.0
         with:
