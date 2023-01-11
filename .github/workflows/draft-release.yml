@@ -5,6 +5,15 @@ on:
       next-version:
         description: 'Next version number'
         required: false
+      bump-level:
+        description: 'Bump level'
+        required: true
+        default: 'minor'
+        type: choice
+        options:
+          - major
+          - minor
+          - patch
 jobs:
   draft:
     runs-on: ubuntu-latest
@@ -34,7 +43,7 @@ jobs:
         id: bump-semver
         with:
           current_version: ${{ steps.version.outputs.group1 }}
-          level: minor
+          level: ${{ github.event.inputs.bump-level }}
       - name: Update version number (with Semver)
         uses: jacobtomlinson/gha-find-replace@v2
         if: "${{ github.event.inputs.next-version == '' }}"
