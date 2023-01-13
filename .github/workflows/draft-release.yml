@@ -63,7 +63,6 @@ jobs:
           head: release/${{ env.VERSION }}
           base: main
           title: Release v${{ env.VERSION }}
-          reviewers: ${{ github.actor }}
           body: |
             Hi @${{ github.actor }}!
             This PR was created in response to a manual trigger of the release workflow here: https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}.
