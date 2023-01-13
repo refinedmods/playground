@@ -1,7 +1,8 @@
 name: Validate branch name
-on: pull_request
+on: [pull_request]
 jobs:
   branch-naming:
+    name: branchnaming
     runs-on: ubuntu-latest
     steps:
       - name: Validate if branch name is valid
