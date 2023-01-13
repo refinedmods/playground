@@ -58,7 +58,7 @@ jobs:
       - name: Create pull request for release
         uses: thomaseizinger/create-pull-request@1.3.0
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITFLOW_PUSH_TOKEN }}
         with:
           head: release/${{ env.VERSION }}
           base: main
