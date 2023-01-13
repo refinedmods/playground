@@ -13,7 +13,7 @@ jobs:
           allowed_prefixes: 'build,chore,ci,docs,feat,fix,perf,refactor,revert,style,test'
           ignore: main,develop
           min_length: 5
-          max_length: 20
+          max_length: 50
       - name: Validate if release or hotfix branch name is valid
         if: startsWith(github.event.pull_request.head.ref, 'release/') || startsWith(github.event.pull_request.head.ref, 'hotfix/')
         uses: deepakputhraya/action-branch-name@master
