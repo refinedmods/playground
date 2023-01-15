@@ -24,7 +24,7 @@ jobs:
           token: ${{ secrets.GITFLOW_PUSH_TOKEN }}
       - name: Get next version number
         id: version
-        uses: ./actions/get-next-version-number
+        uses: ./.github/actions/get-next-version-number
         with:
           release-type: ${{ github.event.inputs.release-type }}
           version-number: ${{ github.event.inputs.version-number }}
