@@ -5,36 +5,21 @@ inputs:
     description: 'The Semver release type.'
     required: true
     default: 'minor'
-  version-number:
-    description: 'The version number override.'
-    required: false
 outputs:
   version:
     description: 'The next version number.'
-    value: ${{ env.VERSION }}
+    value: ${{ steps.bump-semver.outputs.new_version }}
 runs:
   using: "composite"
   steps:
     - name: Get latest version from changelog
-      if: "${{ inputs.version-number == '' }}"
       id: changelog
       uses: mindsers/changelog-reader-action@v2
       with:
         path: ./CHANGELOG.md
     - name: Get Semver version number
-      if: "${{ inputs.version-number == '' }}"
       uses: actions-ecosystem/action-bump-semver@v1
       id: bump-semver
       with:
         current_version: ${{ steps.changelog.outputs.version }}
         level: ${{ inputs.release-type }}
-    - name: Assign Semver version number
-      shell: bash
-      if: "${{ inputs.version-number == '' }}"
-      run: |
-        echo "VERSION=${{ steps.bump-semver.outputs.new_version }}" >> $GITHUB_ENV
-    - name: Assign manual version number
-      shell: bash
-      if: "${{ inputs.version-number != '' }}"
-      run: |
-        echo "VERSION=${{ inputs.version-number }}" >> $GITHUB_ENV
